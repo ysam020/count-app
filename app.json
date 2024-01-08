@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": "AlVision Count",
+    "slug": "alvision-count",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/Logo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/Count.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow access to camera",
+        "NSPhotoLibraryUsageDescription": "Allow access to photo library",
+        "NSPhotoLibraryAddUsageDescription": "Allow access to save photos"
+      },
+      "bundleIdentifier": "com.ios.alvisioncount"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.INTERNET"
+      ],
+      "package": "com.alluvium_iot_solutions.alvisioncount"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "permissions": {
+            "photos": "The app accesses your photos to let you share them with your friends."
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "cc0cd23e-01f0-4ab9-b2f4-b0ee009e8d9c"
+      }
+    },
+    "owner": "alluvium_iot_solutions"
+  }
+}
