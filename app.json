@@ -23,8 +23,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/Logo.png",
         "backgroundColor": "#ffffff"
+      },
+      "config": {
+        "networkSecurityConfig": "./network_security_config.xml"
       },
       "permissions": [
         "android.permission.CAMERA",

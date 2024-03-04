@@ -25,7 +25,7 @@ export default function Signup(props) {
     };
     try {
       const res = await axios.post(
-        "https://6bb1-103-11-119-220.ngrok-free.app/auth/register",
+        "https://13.201.88.252:8000/auth/register",
         formData
       );
 

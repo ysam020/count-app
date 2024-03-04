@@ -9,7 +9,7 @@ import Signup from "./components/Signup";
 LogBox.ignoreAllLogs();
 
 export default function App() {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
   const [loginScreen, setLoginScreen] = useState(true);
 
   function displayLoginScreen() {
@@ -24,6 +24,7 @@ export default function App() {
     const checkUserSession = async () => {
       try {
         const storedToken = await AsyncStorage.getItem("countThingsToken");
+        console.log(storedToken);
         if (storedToken) {
           setUser(true);
         }

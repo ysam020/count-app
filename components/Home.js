@@ -68,7 +68,7 @@ function Home() {
       try {
         setLoading(true);
         const res = await axios.post(
-          "https://6bb1-103-11-119-220.ngrok-free.app/count",
+          "https://6bb1-103-11-119-220.ngrok-free.app:8000/count",
           data,
           config
         );
@@ -100,7 +100,7 @@ function Home() {
       };
 
       const res = await axios.get(
-        "https://6bb1-103-11-119-220.ngrok-free.app/user-counts",
+        "https://13.201.88.252:8000/user-counts",
         config
       );
       const convertedData = res.data.map((item) => {
@@ -199,7 +199,7 @@ function Home() {
                   style={{ width: "75%" }}
                   minimumValue={0}
                   maximumValue={1}
-                  value={iou}
+                  value={confidenceRatio}
                   onValueChange={onConfidenceRatioChange}
                   minimumTrackTintColor="#36454F"
                   maximumTrackTintColor="#a9a9a9"
@@ -255,7 +255,7 @@ function Home() {
                   style={{ width: "75%" }}
                   minimumValue={0}
                   maximumValue={1}
-                  value={iou}
+                  value={size}
                   onValueChange={onSizeChange}
                   minimumTrackTintColor="#36454F"
                   maximumTrackTintColor="#a9a9a9"

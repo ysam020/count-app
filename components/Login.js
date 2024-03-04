@@ -4,6 +4,7 @@ import {
   StyleSheet,
   StatusBar,
   TouchableOpacity,
+  Modal,
   Image,
   Text,
   View,
@@ -11,11 +12,13 @@ import {
 import axios from "axios";
 import { UserContext } from "../contexts/UserContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import ForgotPassword from "./ForgotPassword";
 
 export default function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { setUser } = useContext(UserContext);
+  const [modal, setModal] = useState(false);
 
   const handleLogin = async () => {
     const requestBody = new URLSearchParams();
@@ -28,19 +31,23 @@ export default function Login(props) {
         },
       };
       const res = await axios.post(
-        "https://6bb1-103-11-119-220.ngrok-free.app/auth/jwt/login",
-        requestBody.toString(), // Convert URLSearchParams to string
+        "https://13.201.88.252:8000/auth/jwt/login",
+        requestBody.toString(),
         config
       );
+      console.log(res.data);
       setUser(true);
-      // Store the access token in AsyncStorage
+
       if (res.data.access_token) {
         await AsyncStorage.setItem("countThingsToken", res.data.access_token);
       }
     } catch (error) {
-      // Handle login error scenarios
       console.error("Login failed:", error);
     }
+  };
+
+  const closeModal = () => {
+    setModal(false);
   };
 
   return (
@@ -70,12 +77,29 @@ export default function Login(props) {
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
 
-      <Text style={{ marginTop: 15 }}>Forgot Password?</Text>
+      <TouchableOpacity onPress={() => setModal(true)}>
+        <Text style={{ marginTop: 15 }}>Forgot Password?</Text>
+      </TouchableOpacity>
+
       <TouchableOpacity onPress={() => props.setLoginScreen(false)}>
         <Text style={styles.signupText}>Sign up</Text>
       </TouchableOpacity>
 
       <StatusBar style="auto" />
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modal}
+        onRequestClose={closeModal}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <TouchableOpacity onPress={closeModal}>
+              <ForgotPassword setModal={setModal} />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -123,5 +147,22 @@ const styles = StyleSheet.create({
     color: "#D12228",
     fontWeight: "bold",
     fontSize: 18,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContent: {
+    width: "80%",
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  modalText: {
+    fontSize: 18,
+    marginBottom: 10,
   },
 });
